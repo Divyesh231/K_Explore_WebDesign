@@ -3,6 +3,7 @@ const searchInput = document.querySelector('#search');
 const filterButtons = document.querySelectorAll('.filter');
 const eventCards = document.querySelectorAll('.event-card');
 const noResults = document.querySelector('#no-results');
+const resultsCount = document.querySelector('#results-count');
 let selectedCategory = 'all';
 
 function updateEvents() {
@@ -11,7 +12,8 @@ function updateEvents() {
 
   eventCards.forEach((card) => {
     const categoryMatches = selectedCategory === 'all' || card.dataset.category === selectedCategory;
-    const searchMatches = card.dataset.search.includes(searchTerm);
+    const searchableText = `${card.dataset.search} ${card.textContent}`.toLowerCase();
+    const searchMatches = searchableText.includes(searchTerm);
     const showCard = categoryMatches && searchMatches;
 
     card.hidden = !showCard;
@@ -19,9 +21,11 @@ function updateEvents() {
   });
 
   noResults.hidden = visibleCount > 0;
+  resultsCount.textContent = `${visibleCount} event${visibleCount === 1 ? '' : 's'} shown.`;
 }
 
 searchInput.addEventListener('input', updateEvents);
+updateEvents();
 filterButtons.forEach((button) => {
   button.addEventListener('click', () => {
     selectedCategory = button.dataset.filter;
@@ -161,6 +165,9 @@ function checkPhoneNumber() {
 }
 
 phoneInput.addEventListener('input', checkPhoneNumber);
+form.addEventListener('input', () => {
+  message.textContent = '';
+});
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   message.textContent = '';

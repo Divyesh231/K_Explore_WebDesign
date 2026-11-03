@@ -43,3 +43,8 @@ body[data-theme="dark"] .filter{border-color:#606657;color:var(--ink)}
 body[data-theme="dark"] .filter.active,body[data-theme="dark"] .filter:hover{background:#718466;border-color:#718466;color:#fff}
 body[data-theme="dark"] footer{color:#c0c2b7}
 @media(max-width:620px){.my-plans{padding:42px 7%}.event-dialog{padding:30px 23px}.my-plans .section-heading{align-items:flex-start;gap:12px}.clear-plans{padding-top:7px}}
+.nav-ticket:hover{background:var(--ink);color:var(--paper)}
+.sample-note{margin:17px 0 0;color:var(--muted);font-size:11px}
+.results-count{margin:8px 0 0;text-align:right;color:var(--muted);font:10px var(--mono)}
+.no-results{margin:0;padding:20px 0;color:var(--muted);font-size:13px}
+.details-link:hover,.clear-plans:hover,.remove-plan:hover{color:var(--orange)}
