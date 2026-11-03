@@ -71,9 +71,11 @@
       <p class="form-intro">Fill this in to see your confirmation.</p>
       <form id="registration-form">
         <label for="name">Your name</label>
-        <input id="name" name="name" type="text" required>
+        <input id="name" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required>
         <label for="email">Email address</label>
-        <input id="email" name="email" type="email" required>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+        <label for="phone">Phone number</label>
+        <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Include your area code" required>
         <label for="event">Choose an event</label>
         <select id="event" name="event" required>
           <option value="">Choose one…</option>

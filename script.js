@@ -11,14 +11,33 @@ eventLinks.forEach((link) => {
 // Show a confirmation in the page when the form is submitted.
 const form = document.querySelector('#registration-form');
 const confirmation = document.querySelector('#confirmation');
+const phoneInput = document.querySelector('#phone');
+
+// A phone number can include spaces, +, or brackets, but needs 10 to 15 digits.
+function checkPhoneNumber() {
+  const digitCount = phoneInput.value.replace(/\D/g, '').length;
+
+  if (digitCount < 10 || digitCount > 15) {
+    phoneInput.setCustomValidity('Enter a phone number with 10 to 15 digits.');
+  } else {
+    phoneInput.setCustomValidity('');
+  }
+}
+
+phoneInput.addEventListener('input', checkPhoneNumber);
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
+  confirmation.textContent = '';
+
+  checkPhoneNumber();
+  if (!form.reportValidity()) return;
 
   const name = document.querySelector('#name').value.trim();
   const eventName = eventSelect.value;
   confirmation.textContent = `Thanks, ${name}! You picked ${eventName}.`;
   form.reset();
+  phoneInput.setCustomValidity('');
 });
 
 // Search the event cards and optionally show one category at a time.
