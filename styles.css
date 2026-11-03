@@ -53,6 +53,24 @@ h1 span { color: var(--orange); }
 }
 .button:hover { background: var(--ink); }
 h2 { margin: 4px 0 25px; font-size: 34px; }
+.event-tools {
+  max-width: 620px;
+  margin: 0 0 22px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+.event-tools label { display: block; margin: 0 0 5px; font-size: 13px; }
+.event-tools input, .event-tools select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--line);
+  background: #fbf9f3;
+  color: var(--ink);
+  font: inherit;
+}
+.event-card[hidden] { display: none; }
+.event-results { min-height: 24px; color: #65675f; font-size: 13px; }
 .event-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .event-card { padding: 22px; border: 1px solid var(--line); background: #fbf9f3; }
 .event-category { font-size: 10px; }
@@ -81,6 +99,7 @@ footer p { margin: 0; }
 @media (max-width: 700px) {
   .intro, .events, .registration { padding: 45px 7%; }
   .event-list { grid-template-columns: 1fr; }
+  .event-tools { grid-template-columns: 1fr; gap: 10px; }
   .site-header { padding-right: 7%; padding-left: 7%; }
   footer { padding-right: 7%; padding-left: 7%; }
 }
