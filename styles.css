@@ -37,29 +37,8 @@ a {
   padding:0 7.2%;
   display:flex;
   align-items:center;
-  justify-content:space-between;
+  justify-content:flex-end;
   border-bottom:1px solid var(--line)
-}
-
-.brand {
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  font-size:13px;
-  font-weight:800;
-  letter-spacing:.12em
-}
-
-.brand-mark {
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  background:var(--orange);
-  color:var(--paper);
-  display:grid;
-  place-items:center;
-  font:700 16px var(--serif);
-  letter-spacing:0
 }
 
 .topbar nav {
@@ -737,11 +716,6 @@ footer {
 
 footer p {
   margin:0
-}
-
-.footer-brand {
-  color:var(--ink);
-  font-size:11px
 }
 
 footer>a:last-child {

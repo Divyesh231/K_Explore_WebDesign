@@ -1,6 +1,6 @@
-# K Explore
+# Events in Bhubaneswar
 
-K Explore is a responsive event guide for Bhubaneswar, built with HTML, CSS and JavaScript. The event listings and details are sample content for this project.
+A responsive event guide for Bhubaneswar, built with HTML, CSS and JavaScript. The event listings and details are sample content for this project.
 
 ## Features
 
