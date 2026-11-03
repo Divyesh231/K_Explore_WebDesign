@@ -1189,3 +1189,50 @@ body[data-theme="dark"] footer {
   height:100%;
   object-fit:cover
 }
+
+.event-card {
+  display:flex;
+  flex-direction:column;
+  padding-bottom:17px;
+  border-bottom:1px solid var(--line)
+}
+
+.card-bottom {
+  margin-top:auto
+}
+
+.poster-image {
+  transition:transform .25s ease
+}
+
+.event-art:hover .poster-image {
+  transform:scale(1.025)
+}
+
+.mic-copy,.patch-copy,.chai-copy {
+  position:absolute;
+  z-index:2;
+  left:10%;
+  font-weight:800;
+  line-height:.94;
+  letter-spacing:-.06em;
+}
+
+.mic-copy {
+  top:37%;
+  font-size:25px;
+  transform:rotate(-5deg)
+}
+
+.patch-copy {
+  top:39%;
+  font-size:22px;
+  color:var(--ink);
+  transform:rotate(-7deg)
+}
+
+.chai-copy {
+  top:36%;
+  font-size:18px;
+  transform:rotate(-5deg)
+}

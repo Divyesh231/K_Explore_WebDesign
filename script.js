@@ -71,6 +71,30 @@ const eventDetails = {
     when: 'Sunday, 15 November · 7:00 PM',
     where: 'Old Town, Bhubaneswar',
     extra: 'Please tell the host about dietary needs before the day. Sample event for this project.'
+  },
+  'open-mic': {
+    title: 'Open Mic, No Pressure',
+    category: 'MUSIC / OPEN MIC',
+    description: 'Songs, stories and bad jokes are welcome. You can come along just to listen.',
+    when: 'Friday, 20 November · 7:00 PM',
+    where: 'Saheed Nagar, Bhubaneswar',
+    extra: 'Short sets, first come first served. Sample event for this project.'
+  },
+  patch: {
+    title: 'Print & Patch Afternoon',
+    category: 'ART / WORKSHOP',
+    description: 'Try a simple block print and add it to a tote or a piece of fabric.',
+    when: 'Saturday, 21 November · 2:00 PM',
+    where: 'Unit 1, Bhubaneswar',
+    extra: 'Basic materials are included. Sample event for this project.'
+  },
+  chai: {
+    title: 'Chai and Tabletop',
+    category: 'FOOD / GAMES',
+    description: 'Tea, a few board games and a slow Sunday afternoon around the table.',
+    when: 'Sunday, 22 November · 4:00 PM',
+    where: 'Old Town, Bhubaneswar',
+    extra: 'Games are provided; bring a favorite if you have one. Sample event for this project.'
   }
 };
 

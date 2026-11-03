@@ -24,7 +24,7 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow"><span class="live-dot"></span> BHUBANESWAR / WHAT'S ON</p>
-        <h1 id="hero-title">What’s on<br><em>this week?</em></h1>
+        <h1 id="hero-title">Pick a plan.<br><em>Head out.</em></h1>
         <p class="hero-intro">A short list of music, art and food events around Bhubaneswar. Pick one and make a plan.</p>
         <a class="round-link" href="#events">See what's on <span aria-hidden="true">↓</span></a>
         <p class="hand-note">pick a date. bring a friend. <span>✳</span></p>
@@ -44,7 +44,7 @@
     <section class="events-section" id="events" aria-labelledby="events-title">
       <div class="section-heading">
         <div><p class="eyebrow">THE GOOD STUFF / NOVEMBER 2026</p><h2 id="events-title">On the <em>calendar</em></h2></div>
-        <p class="section-note">Three sample events<br>around the city.</p>
+        <p class="section-note">Six sample events<br>around the city.</p>
       </div>
       <p class="sample-note">These are example listings for the project, not confirmed public events.</p>
       <div class="tools-row">
@@ -81,6 +81,30 @@
           <h3>Sunday Supper Club</h3><p>One long table, a seasonal menu, and strangers who won't be strangers long.</p>
           <div class="card-bottom"><span>Old Town, Bhubaneswar</span><button class="details-link" type="button" data-details="supper">Details ↗</button></div>
         </article>
+        <article class="event-card" data-category="music" data-search="open mic no pressure music acoustic sing saheed nagar bhubaneswar">
+          <a class="event-art art-mic" href="#register" data-event="Open Mic, No Pressure" aria-label="Register for Open Mic, No Pressure">
+            <img class="poster-image" src="assets/poster-open-mic.svg" alt="" loading="lazy" decoding="async"><span class="art-stamp">MUSIC / 04</span><span class="mic-copy">TAKE<br>THE<br>MIC</span><span class="art-arrow">↗</span>
+          </a>
+          <div class="card-meta"><span>FRI, 20 NOV · 7:00 PM</span><span class="category-tag">MUSIC</span></div>
+          <h3>Open Mic, No Pressure</h3><p>Songs, stories, bad jokes welcome. Getting up to perform is optional.</p>
+          <div class="card-bottom"><span>Saheed Nagar, Bhubaneswar</span><button class="details-link" type="button" data-details="open-mic">Details ↗</button></div>
+        </article>
+        <article class="event-card" data-category="art" data-search="print patch afternoon art craft workshop collage unit 1 bhubaneswar">
+          <a class="event-art art-patch" href="#register" data-event="Print & Patch Afternoon" aria-label="Register for Print and Patch Afternoon">
+            <img class="poster-image" src="assets/poster-patch.svg" alt="" loading="lazy" decoding="async"><span class="art-stamp">MAKE / 05</span><span class="patch-copy">PRINT<br>+ PATCH</span><span class="art-arrow">↗</span>
+          </a>
+          <div class="card-meta"><span>SAT, 21 NOV · 2:00 PM</span><span class="category-tag">ART &amp; MAKING</span></div>
+          <h3>Print &amp; Patch Afternoon</h3><p>Try a simple block print, then put it on a tote or a bit of fabric.</p>
+          <div class="card-bottom"><span>Unit 1, Bhubaneswar</span><button class="details-link" type="button" data-details="patch">Details ↗</button></div>
+        </article>
+        <article class="event-card" data-category="food" data-search="chai tabletop games food tea board games old town bhubaneswar">
+          <a class="event-art art-chai" href="#register" data-event="Chai and Tabletop" aria-label="Register for Chai and Tabletop">
+            <img class="poster-image" src="assets/poster-chai.svg" alt="" loading="lazy" decoding="async"><span class="art-stamp">AT THE TABLE / 06</span><span class="chai-copy">CHAI<br>&amp; ONE<br>MORE GAME</span><span class="art-arrow">↗</span>
+          </a>
+          <div class="card-meta"><span>SUN, 22 NOV · 4:00 PM</span><span class="category-tag">FOOD</span></div>
+          <h3>Chai and Tabletop</h3><p>Tea, a few board games, and a slow Sunday afternoon with other people.</p>
+          <div class="card-bottom"><span>Old Town, Bhubaneswar</span><button class="details-link" type="button" data-details="chai">Details ↗</button></div>
+        </article>
       </div>
       <p class="no-results" id="no-results" hidden>No plans found. Try another search?</p>
       <p class="results-count" id="results-count" aria-live="polite"></p>
@@ -91,7 +115,7 @@
       <form id="registration-form" novalidate>
         <label for="name">Your name</label><input id="name" name="name" autocomplete="name" placeholder="What do your friends call you?" minlength="2" maxlength="70" required>
         <div class="form-pair"><div><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="120" required></div><div><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="10–15 digits" maxlength="18" required></div></div>
-        <label for="event">Pick your plan</label><select id="event" name="event" required><option value="">Choose an event…</option><option>Rooftop Records</option><option>Make a Mess: Zine Workshop</option><option>Sunday Supper Club</option></select>
+        <label for="event">Pick your plan</label><select id="event" name="event" required><option value="">Choose an event…</option><option>Rooftop Records</option><option>Make a Mess: Zine Workshop</option><option>Sunday Supper Club</option><option>Open Mic, No Pressure</option><option>Print &amp; Patch Afternoon</option><option>Chai and Tabletop</option></select>
         <button class="submit-button" type="submit">Count me in <span aria-hidden="true">↗</span></button>
         <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
       </form>
