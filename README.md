@@ -1,32 +1,24 @@
 # K Explore
 
-A beginner event website made with HTML, CSS and JavaScript. It lists six sample events around Bhubaneswar, lets visitors search and filter them, shows more information in an event details panel, and has a validated registration form. The event posters are original SVGs in `assets/`. Sign-ups and the light/dark preference are saved in the visitor's browser only. The event listings are examples for the project, not confirmed public events; registrations are not sent to an organizer.
+K Explore is a responsive event guide for Bhubaneswar, built with HTML, CSS and JavaScript. The event listings and details are sample content for this project.
 
-## Open the site
+## Features
 
-Open `index.html` in a web browser. No installation is needed.
+- Browse event cards with dates, areas, descriptions and original poster artwork.
+- Search events and filter by music, art or food.
+- Open an event’s details and select it in the registration form.
+- Validate the registration form and show a confirmation.
+- Save registrations and the light or dark theme in the browser using `localStorage`.
 
-## Change things
+Registrations stay in the visitor’s browser. The site does not send them to an organizer or a server.
 
-- Edit the event cards in `index.html` and matching detail text in `script.js`.
-- Replace or redraw the event posters in the `assets/` folder.
-- Change colors and layout in `styles.css`.
-- Change what happens when a visitor clicks or submits in `script.js`.
+## Run the project
 
-## See the Git version history
+Open `index.html` in a web browser. No installation or build step is needed.
 
-Open a terminal in this folder and run:
+## Project files
 
-```sh
-git log --oneline
-```
-
-To see the changes in a commit, run `git show` followed by the commit ID. This folder has local Git history but has not been uploaded to GitHub yet.
-
-## Before submitting
-
-1. Replace the sample events, dates and areas with confirmed event information.
-2. Create a GitHub repository, then connect and push this folder with `git remote add origin YOUR_REPOSITORY_URL` and `git push -u origin master`.
-3. Deploy the static site with GitHub Pages, Netlify or Vercel, then include both the repository link and live website link in your submission.
-
-The current registration form is a front-end demonstration. It saves entries only in the visitor's browser; it does not send them to an event organizer.
+- `index.html` contains the page and sample event listings.
+- `styles.css` contains the layout, colors and responsive styles.
+- `script.js` contains search, filters, event details, form validation and browser storage.
+- `assets/` contains the event poster SVG images.
