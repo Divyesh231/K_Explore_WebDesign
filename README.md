@@ -1,6 +1,6 @@
 # K Explore
 
-A beginner event website made with HTML, CSS and JavaScript. This first version lists three sample Bengaluru events and has a simple registration form.
+A beginner event website made with HTML, CSS and JavaScript. This first version lists three sample events around Bhubaneswar and has a simple registration form. The event listings are examples for the project, not confirmed public events.
 
 ## Open the site
 
