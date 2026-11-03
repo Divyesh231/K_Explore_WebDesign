@@ -1,0 +1,86 @@
+/* Colors and spacing for the first simple version of K Explore. */
+:root {
+  --paper: #f5f1e8;
+  --ink: #242b22;
+  --green: #526b4b;
+  --orange: #e76842;
+  --line: #d9d2c4;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+a { color: inherit; }
+.site-header {
+  min-height: 68px;
+  padding: 12px 8%;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo { font-size: 20px; font-weight: bold; text-decoration: none; }
+nav { display: flex; gap: 22px; }
+nav a { text-decoration: none; }
+nav a:hover, .event-link:hover, footer a:hover { color: var(--orange); }
+.intro, .events, .registration { padding: 65px 10%; }
+.intro { background: #e9e2d4; }
+.small-title, .event-category {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+h1 { margin: 12px 0; font-size: clamp(42px, 7vw, 72px); line-height: 1.05; }
+h1 span { color: var(--orange); }
+.intro > p:not(.small-title) { max-width: 450px; }
+.button {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 11px 17px;
+  border: 0;
+  background: var(--green);
+  color: white;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.button:hover { background: var(--ink); }
+h2 { margin: 4px 0 25px; font-size: 34px; }
+.event-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.event-card { padding: 22px; border: 1px solid var(--line); background: #fbf9f3; }
+.event-category { font-size: 10px; }
+.event-card h3 { margin: 8px 0; font-size: 21px; line-height: 1.3; }
+.event-place { color: #65675f; font-size: 13px; }
+.event-link { color: var(--green); font-weight: bold; font-size: 14px; }
+.registration { background: var(--green); color: white; }
+.registration .small-title { color: #e7e9df; }
+.registration h2 { margin-bottom: 0; }
+.form-intro { margin-top: 4px; color: #e7e9df; }
+form { max-width: 520px; margin-top: 25px; }
+label { display: block; margin: 15px 0 5px; font-size: 14px; }
+input, select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #c7d0c1;
+  border-radius: 2px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+form .button { background: #f2c454; color: var(--ink); font-weight: bold; }
+#confirmation { min-height: 24px; color: #fff2bd; }
+footer { padding: 20px 8%; display: flex; justify-content: space-between; gap: 15px; font-size: 13px; }
+footer p { margin: 0; }
+@media (max-width: 700px) {
+  .intro, .events, .registration { padding: 45px 7%; }
+  .event-list { grid-template-columns: 1fr; }
+  .site-header { padding-right: 7%; padding-left: 7%; }
+  footer { padding-right: 7%; padding-left: 7%; }
+}

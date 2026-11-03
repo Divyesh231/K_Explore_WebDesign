@@ -1,0 +1,23 @@
+# K Explore
+
+A beginner event website made with HTML, CSS and JavaScript. This first version lists three sample Bengaluru events and has a simple registration form.
+
+## Open the site
+
+Open `index.html` in a web browser. No installation is needed.
+
+## Change things
+
+- Edit event names, dates and descriptions in `index.html`.
+- Change colors and layout in `styles.css`.
+- Change what happens when a visitor clicks or submits in `script.js`.
+
+## See the Git version history
+
+Open a terminal in this folder and run:
+
+```sh
+git log --oneline
+```
+
+To see the changes in a commit, run `git show` followed by the commit ID. For now this is a local Git project; it has not been uploaded to GitHub.

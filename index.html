@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>K Explore | Local Events</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="#top">K Explore</a>
+    <nav><a href="#events">Events</a><a href="#register">Register</a></nav>
+  </header>
+
+  <main id="top">
+    <section class="intro">
+      <p class="small-title">A LOCAL EVENT GUIDE</p>
+      <h1>Find something<br><span>good to do.</span></h1>
+      <p>Music, art and food events around Bengaluru. Pick a plan and bring a friend.</p>
+      <a class="button" href="#events">See the events ↓</a>
+    </section>
+
+    <section class="events" id="events">
+      <p class="small-title">COMING UP</p>
+      <h2>Upcoming events</h2>
+      <div class="event-list">
+        <article class="event-card">
+          <p class="event-category">MUSIC · FRIDAY, 13 NOVEMBER</p>
+          <h3>Rooftop Records</h3>
+          <p>Listen to records together and watch the sun go down.</p>
+          <p class="event-place">Terrace Room, Indiranagar · 6:30 PM</p>
+          <a class="event-link" href="#register" data-event="Rooftop Records">Register for this event →</a>
+        </article>
+        <article class="event-card">
+          <p class="event-category">ART · SATURDAY, 14 NOVEMBER</p>
+          <h3>Make a Mess: Zine Workshop</h3>
+          <p>Use paper, scissors and markers to make a tiny magazine.</p>
+          <p class="event-place">Paper Trail Studio, Church Street · 11:00 AM</p>
+          <a class="event-link" href="#register" data-event="Make a Mess: Zine Workshop">Register for this event →</a>
+        </article>
+        <article class="event-card">
+          <p class="event-category">FOOD · SUNDAY, 15 NOVEMBER</p>
+          <h3>Sunday Supper Club</h3>
+          <p>Share a seasonal dinner at one long table with new people.</p>
+          <p class="event-place">Little Table, Jayanagar · 7:00 PM</p>
+          <a class="event-link" href="#register" data-event="Sunday Supper Club">Register for this event →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="registration" id="register">
+      <p class="small-title">SAVE YOUR PLACE</p>
+      <h2>Register for an event</h2>
+      <p class="form-intro">Fill this in to see your confirmation.</p>
+      <form id="registration-form">
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" required>
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" required>
+        <label for="event">Choose an event</label>
+        <select id="event" name="event" required>
+          <option value="">Choose one…</option>
+          <option>Rooftop Records</option>
+          <option>Make a Mess: Zine Workshop</option>
+          <option>Sunday Supper Club</option>
+        </select>
+        <button class="button" type="submit">Register</button>
+        <p id="confirmation" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer><p>K Explore · A small event guide for Bengaluru</p><a href="#top">Back to top ↑</a></footer>
+</body>
+</html>
