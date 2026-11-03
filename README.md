@@ -1,6 +1,6 @@
 # K Explore
 
-A beginner event website made with HTML, CSS and JavaScript. It lists three sample events around Bhubaneswar, lets visitors search and filter them, and has a registration form that checks the visitor's name, email and phone number. The event listings are examples for the project, not confirmed public events.
+A beginner event website made with HTML, CSS and JavaScript. It lists three sample events around Bhubaneswar, lets visitors search and filter them, shows more information in an event details panel, and has a validated registration form. Sign-ups and the light/dark preference are saved in the visitor's browser only. The event listings are examples for the project, not confirmed public events; registrations are not sent to an organizer.
 
 ## Open the site
 

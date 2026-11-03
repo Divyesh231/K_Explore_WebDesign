@@ -3,95 +3,109 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>K Explore | Local Events</title>
+  <meta name="description" content="A student-made guide to sample music, art and food events in Bhubaneswar.">
+  <title>K Explore — Bhubaneswar event guide</title>
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-  <header class="site-header">
-    <a class="logo" href="#top">K Explore</a>
-    <nav><a href="#events">Events</a><a href="#register">Register</a></nav>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="K Explore home"><span class="brand-mark">K</span><span>K EXPLORE</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#events">The list</a>
+      <a href="#about">About</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">☾ <span>Night mode</span></button>
+      <a class="nav-ticket" href="#events">Find an event <span aria-hidden="true">↗</span></a>
+    </nav>
   </header>
 
-  <main id="top">
-    <section class="intro">
-      <p class="small-title">BHUBANESWAR · EVENT GUIDE</p>
-      <h1>What’s on<br><span>this week?</span></h1>
-      <p>A short list of music, art and food events around Bhubaneswar. Pick one and make a plan.</p>
-      <a class="button" href="#events">Browse events ↓</a>
+  <main id="home">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot"></span> BHUBANESWAR / WHAT'S ON</p>
+        <h1 id="hero-title">What’s on<br><em>this week?</em></h1>
+        <p class="hero-intro">A short list of music, art and food events around Bhubaneswar. Pick one and make a plan.</p>
+        <a class="round-link" href="#events">See what's on <span aria-hidden="true">↓</span></a>
+        <p class="hand-note">pick a date. bring a friend. <span>✳</span></p>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a sunny outdoor music event" role="img">
+        <div class="sun"></div>
+        <div class="art-label">GOOD<br>THINGS<br>HAPPEN<br>OUTSIDE.</div>
+        <div class="hill hill-back"></div><div class="hill hill-front"></div>
+        <div class="person person-one"><i></i><b></b></div>
+        <div class="person person-two"><i></i><b></b></div>
+        <div class="person person-three"><i></i><b></b></div>
+        <span class="art-caption">01 / SHOW UP</span>
+        <span class="sparkle sparkle-one">✳</span><span class="sparkle sparkle-two">✳</span>
+      </div>
     </section>
 
-    <section class="events" id="events">
-      <p class="small-title">COMING UP</p>
-      <h2>Upcoming events</h2>
-      <div class="event-tools">
-        <div class="search-field">
-          <label for="event-search">Search events</label>
-          <input id="event-search" type="search" placeholder="Try music, dinner or zine">
-        </div>
-        <div class="category-field">
-          <label for="category-filter">Show category</label>
-          <select id="category-filter">
-            <option value="all">All events</option>
-            <option value="music">Music</option>
-            <option value="art">Art</option>
-            <option value="food">Food</option>
-          </select>
+    <section class="events-section" id="events" aria-labelledby="events-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE GOOD STUFF / NOVEMBER 2026</p><h2 id="events-title">On the <em>calendar</em></h2></div>
+        <p class="section-note">Three sample events<br>around the city.</p>
+      </div>
+      <div class="tools-row">
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Find your kind of thing…" aria-label="Search events"></label>
+        <div class="filters" role="group" aria-label="Filter events by category">
+          <button class="filter active" data-filter="all" aria-pressed="true">Everything</button>
+          <button class="filter" data-filter="music" aria-pressed="false">Music</button>
+          <button class="filter" data-filter="art" aria-pressed="false">Art &amp; making</button>
+          <button class="filter" data-filter="food" aria-pressed="false">Food</button>
         </div>
       </div>
-      <div class="event-list">
-        <article class="event-card" data-category="music">
-          <div class="event-art poster-record" aria-hidden="true"><span>LISTENING NIGHT</span><div class="record-disc"></div><strong>SIDE A<br>AT SUNSET</strong><small>13 / 11</small></div>
-          <p class="event-category">MUSIC · FRIDAY, 13 NOVEMBER</p>
-          <h3>Rooftop Records</h3>
-          <p>An easy evening of records and requests. Bring a song you want someone else to hear.</p>
-          <p class="event-place">Saheed Nagar, Bhubaneswar · 6:30 PM</p>
-          <a class="event-link" href="#register" data-event="Rooftop Records">Register for this event →</a>
+      <div class="event-grid" id="event-grid" aria-live="polite">
+        <article class="event-card" data-category="music" data-search="rooftop records sunset music vinyl listening party saheed nagar bhubaneswar">
+          <a class="event-art art-record" href="#register" data-event="Rooftop Records" aria-label="Register for Rooftop Records">
+            <span class="art-stamp">MUSIC / 01</span><span class="record-disc"><i></i></span><span class="record-copy">SIDE A<br>AT SUNSET</span><span class="art-arrow">↗</span>
+          </a>
+          <div class="card-meta"><span>FRI, 13 NOV · 6:30 PM</span><span class="category-tag">MUSIC</span></div>
+          <h3>Rooftop Records</h3><p>Bring a record, borrow a view. An easy evening above the city.</p>
+          <div class="card-bottom"><span>Saheed Nagar, Bhubaneswar</span><button class="details-link" type="button" data-details="records">Details ↗</button></div>
         </article>
-        <article class="event-card" data-category="art">
-          <div class="event-art poster-zine" aria-hidden="true"><span>WORKSHOP NO. 02</span><strong>MAKE<br>A MESS<span>!</span></strong><small>Cut · fold · print</small><i></i></div>
-          <p class="event-category">ART · SATURDAY, 14 NOVEMBER</p>
-          <h3>Make a Mess: Zine Workshop</h3>
-          <p>Make a small paper zine with whatever you have to say. Materials are provided.</p>
-          <p class="event-place">Unit 3, Bhubaneswar · 11:00 AM</p>
-          <a class="event-link" href="#register" data-event="Make a Mess: Zine Workshop">Register for this event →</a>
+        <article class="event-card" data-category="art" data-search="make a mess zine workshop art print paper creative unit 3 bhubaneswar">
+          <a class="event-art art-zine" href="#register" data-event="Make a Mess: Zine Workshop" aria-label="Register for Make a Mess: Zine Workshop">
+            <span class="art-stamp">MAKE / 02</span><span class="zine-title">MAKE<br>A MESS<span>!</span></span><span class="zine-sub">A ZINE WORKSHOP</span><span class="paper-shape"></span><span class="art-arrow">↗</span>
+          </a>
+          <div class="card-meta"><span>SAT, 14 NOV · 11:00 AM</span><span class="category-tag">ART &amp; MAKING</span></div>
+          <h3>Make a Mess: Zine Workshop</h3><p>Cut, paste, doodle. Go home with a tiny magazine of your own.</p>
+          <div class="card-bottom"><span>Unit 3, Bhubaneswar</span><button class="details-link" type="button" data-details="zine">Details ↗</button></div>
         </article>
-        <article class="event-card" data-category="food">
-          <div class="event-art poster-supper" aria-hidden="true"><span>AT THE TABLE</span><div class="dinner-plate"><i></i></div><strong>SUNDAY<br>SUPPER CLUB</strong><small>15 / 11</small></div>
-          <p class="event-category">FOOD · SUNDAY, 15 NOVEMBER</p>
-          <h3>Sunday Supper Club</h3>
-          <p>A shared dinner with a set menu. Let us know about dietary needs when you arrive.</p>
-          <p class="event-place">Old Town, Bhubaneswar · 7:00 PM</p>
-          <a class="event-link" href="#register" data-event="Sunday Supper Club">Register for this event →</a>
+        <article class="event-card" data-category="food" data-search="sunday supper club food dinner local seasonal table old town bhubaneswar">
+          <a class="event-art art-supper" href="#register" data-event="Sunday Supper Club" aria-label="Register for Sunday Supper Club">
+            <span class="art-stamp">AT THE TABLE / 03</span><span class="plate"><i></i></span><span class="supper-copy">SUNDAY<br>SUPPER<br>CLUB</span><span class="art-arrow">↗</span>
+          </a>
+          <div class="card-meta"><span>SUN, 15 NOV · 7:00 PM</span><span class="category-tag">FOOD</span></div>
+          <h3>Sunday Supper Club</h3><p>One long table, a seasonal menu, and strangers who won't be strangers long.</p>
+          <div class="card-bottom"><span>Old Town, Bhubaneswar</span><button class="details-link" type="button" data-details="supper">Details ↗</button></div>
         </article>
       </div>
-      <p class="event-results" id="event-results" aria-live="polite"></p>
+      <p class="no-results" id="no-results" hidden>No plans found. Try another search?</p>
+      <p class="results-count" id="results-count" aria-live="polite"></p>
     </section>
 
-    <section class="registration" id="register">
-      <p class="small-title">SAVE YOUR PLACE</p>
-      <h2>Register for an event</h2>
-      <p class="form-intro">Fill this in to see your confirmation.</p>
-      <form id="registration-form">
-        <label for="name">Your name</label>
-        <input id="name" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required>
-        <label for="email">Email address</label>
-        <input id="email" name="email" type="email" autocomplete="email" required>
-        <label for="phone">Phone number</label>
-        <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Include your area code" required>
-        <label for="event">Choose an event</label>
-        <select id="event" name="event" required>
-          <option value="">Choose one…</option>
-          <option>Rooftop Records</option>
-          <option>Make a Mess: Zine Workshop</option>
-          <option>Sunday Supper Club</option>
-        </select>
-        <button class="button" type="submit">Register</button>
-        <p id="confirmation" role="status"></p>
+    <section class="signup-section" id="register" aria-labelledby="signup-title">
+      <div class="signup-aside"><p class="eyebrow">YOU, THERE</p><h2 id="signup-title">Make it<br><em>official.</em></h2><p>Pick an event, leave your details, and we’ll save you a spot.</p><span class="aside-scribble">see you out there ↗</span></div>
+      <form id="registration-form" novalidate>
+        <label for="name">Your name</label><input id="name" name="name" autocomplete="name" placeholder="What do your friends call you?" minlength="2" maxlength="70" required>
+        <div class="form-pair"><div><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="120" required></div><div><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="10–15 digits" maxlength="18" required></div></div>
+        <label for="event">Pick your plan</label><select id="event" name="event" required><option value="">Choose an event…</option><option>Rooftop Records</option><option>Make a Mess: Zine Workshop</option><option>Sunday Supper Club</option></select>
+        <button class="submit-button" type="submit">Count me in <span aria-hidden="true">↗</span></button>
+        <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
       </form>
     </section>
+    <section class="my-plans" id="my-plans" aria-labelledby="plans-title" hidden>
+      <div class="section-heading"><div><p class="eyebrow">SAVED ON THIS DEVICE</p><h2 id="plans-title">Your <em>plans</em></h2></div><button type="button" class="clear-plans" id="clear-plans">Clear my plans</button></div>
+      <div class="saved-list" id="saved-list"></div>
+      <p class="local-note">Your sign-ups are stored in this browser only. They are not sent to an event organizer.</p>
+    </section>
   </main>
-
-  <footer><p>K Explore · A student-made event guide for Bhubaneswar</p><a href="#top">Back to top ↑</a></footer>
+  <dialog class="event-dialog" id="event-dialog" aria-labelledby="dialog-title">
+    <button class="dialog-close" type="button" aria-label="Close event details">×</button>
+    <p class="eyebrow" id="dialog-category">EVENT DETAILS</p><h2 id="dialog-title"></h2><p class="dialog-description" id="dialog-description"></p>
+    <dl class="dialog-facts"><div><dt>When</dt><dd id="dialog-when"></dd></div><div><dt>Where</dt><dd id="dialog-where"></dd></div><div><dt>Good to know</dt><dd id="dialog-extra"></dd></div></dl>
+    <a class="round-link dialog-register" id="dialog-register" href="#register">Save me a spot <span aria-hidden="true">↗</span></a>
+  </dialog>
+  <footer id="about"><a class="brand footer-brand" href="#home"><span class="brand-mark">K</span><span>K EXPLORE</span></a><p>A student-made event guide.</p><p class="footer-location">Bhubaneswar</p><a href="#home">BACK TO TOP ↑</a></footer>
 </body>
 </html>
