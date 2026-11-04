@@ -27,7 +27,12 @@ function updateEvents() {
 
   eventCards.forEach((card) => {
     const categoryMatches = selectedCategory === 'all' || card.dataset.category === selectedCategory;
-    const searchableText = `${card.dataset.search} ${card.textContent}`.toLowerCase();
+    const cardDescription = [
+      card.querySelector('h3').textContent,
+      card.querySelector('.event-card > p').textContent,
+      card.querySelector('.card-bottom > span').textContent
+    ].join(' ');
+    const searchableText = `${card.dataset.search} ${cardDescription}`.toLowerCase();
     const searchMatches = searchableText.includes(searchTerm);
     const favoriteMatches = !savedOnly || favoriteIds.includes(card.querySelector('[data-details]').dataset.details);
     const showCard = categoryMatches && searchMatches && favoriteMatches;
@@ -164,6 +169,7 @@ const countdownFields = {
 };
 const countdownTitle = document.querySelector('#countdown-event');
 const countdownDate = document.querySelector('#countdown-date');
+const countdownRegister = document.querySelector('[data-countdown-register]');
 const countdownCards = [...eventCards].sort((a, b) => new Date(a.dataset.start) - new Date(b.dataset.start));
 
 function updateCountdown() {
@@ -173,11 +179,14 @@ function updateCountdown() {
     countdownTitle.textContent = 'That’s a wrap';
     countdownDate.textContent = 'There are no more sample events in this schedule.';
     Object.values(countdownFields).forEach((field) => { field.textContent = '00'; });
+    countdownRegister.hidden = true;
     return;
   }
 
   const remaining = new Date(nextCard.dataset.start).getTime() - now;
   const eventName = nextCard.querySelector('h3').textContent;
+  countdownRegister.hidden = false;
+  countdownRegister.dataset.event = eventName;
   countdownTitle.textContent = eventName;
   countdownDate.textContent = nextCard.querySelector('.card-meta span').textContent;
   countdownFields.days.textContent = String(Math.floor(remaining / 86400000)).padStart(2, '0');

@@ -1472,3 +1472,242 @@ body[data-theme="dark"] .countdown-clock span {
     min-width:0
   }
 }
+
+/* A little more drama for the landing page and the upcoming-event feature. */
+.hero {
+  min-height:570px;
+  padding-top:78px;
+  padding-bottom:84px
+}
+
+.hero h1 {
+  font-size:clamp(58px,7.2vw,100px)
+}
+
+.hero-art {
+  height:405px;
+  box-shadow:0 18px 45px #526b4b1c
+}
+
+.hero-actions {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:18px
+}
+
+.hero-text-link {
+  color:var(--green);
+  font-size:11px;
+  text-decoration:underline;
+  text-underline-offset:4px
+}
+
+.hero-text-link:hover {
+  color:var(--orange)
+}
+
+.hero-footnote {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  max-width:420px
+}
+
+.hero-footnote .hand-note {
+  margin-top:23px
+}
+
+.hero-count {
+  margin:21px 0 0;
+  color:var(--muted);
+  font:9px var(--mono);
+  letter-spacing:.04em
+}
+
+.hero-count strong {
+  color:var(--green);
+  font-weight:500
+}
+
+.hero-count i {
+  color:var(--orange);
+  font-style:normal;
+  padding:0 4px
+}
+
+.city-ribbon {
+  overflow:hidden;
+  padding:16px 0;
+  background:var(--orange);
+  color:#fff8ec
+}
+
+.ribbon-track {
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  gap:30px;
+  width:max-content;
+  animation:ribbon-drift 38s linear infinite
+}
+
+.ribbon-track span {
+  font:11px var(--mono);
+  letter-spacing:.17em;
+  white-space:nowrap
+}
+
+.ribbon-track i {
+  font-size:16px;
+  font-style:normal;
+  color:var(--yellow)
+}
+
+@keyframes ribbon-drift {
+  to { transform:translateX(-50%) }
+}
+
+.countdown {
+  align-items:center;
+  margin-top:28px;
+  margin-bottom:12px;
+  padding:24px 28px;
+  background:#304b3a;
+  color:#fff9ed;
+  border:0;
+  box-shadow:0 12px 30px #242b2216
+}
+
+.countdown .eyebrow {
+  color:var(--yellow);
+  margin-bottom:8px
+}
+
+.countdown h3 {
+  font-size:clamp(20px,2.5vw,27px);
+  letter-spacing:-.04em
+}
+
+.countdown>div:first-child>p:last-of-type {
+  color:#d5ddcf;
+  margin-top:6px
+}
+
+.countdown-cta {
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  margin-top:15px;
+  color:var(--yellow);
+  font-size:11px;
+  text-decoration:underline;
+  text-underline-offset:4px
+}
+
+.countdown-cta[hidden] {
+  display:none
+}
+
+.countdown-cta:hover {
+  color:#fff
+}
+
+.countdown-clock {
+  gap:9px
+}
+
+.countdown-clock span {
+  min-width:62px;
+  padding:10px 7px;
+  background:#ffffff12;
+  border:1px solid #ffffff24
+}
+
+.countdown-clock b {
+  color:var(--yellow);
+  font-size:22px
+}
+
+.countdown-clock small {
+  color:#d5ddcf
+}
+
+.event-card {
+  transition:transform .2s ease,box-shadow .2s ease
+}
+
+.event-card:hover {
+  transform:translateY(-4px)
+}
+
+body[data-theme="dark"] .countdown {
+  background:#304b3a
+}
+
+body[data-theme="dark"] .countdown-clock span {
+  background:#ffffff12
+}
+
+@media(max-width:800px) {
+  .hero {
+    min-height:0;
+    padding-top:60px;
+    padding-bottom:68px
+  }
+
+  .hero-art {
+    height:330px
+  }
+
+  .countdown {
+    padding:22px
+  }
+
+  .countdown-clock {
+    gap:5px
+  }
+
+  .countdown-clock span {
+    min-width:48px
+  }
+}
+
+@media(max-width:620px) {
+  .hero h1 {
+    font-size:64px
+  }
+
+  .hero-footnote {
+    align-items:flex-start;
+    flex-direction:column;
+    gap:0
+  }
+
+  .hero-count {
+    margin:10px 0 0 8px
+  }
+
+  .city-ribbon {
+    padding:13px 0
+  }
+
+  .ribbon-track span {
+    font-size:9px
+  }
+
+  .countdown {
+    padding:19px 16px
+  }
+
+  .countdown-clock span {
+    padding:8px 4px
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .ribbon-track {
+    animation:none
+  }
+}
