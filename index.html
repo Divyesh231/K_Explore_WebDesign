@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="A student-made guide to sample music, art and food events in Bhubaneswar.">
-  <title>Events in Bhubaneswar</title>
+  <meta name="theme-color" content="#f5f1e8">
+  <meta property="og:title" content="Out & About — Events in Bhubaneswar">
+  <meta property="og:description" content="Pick a plan. Head out. Explore sample music, art and food events around Bhubaneswar.">
+  <title>Out &amp; About — Events in Bhubaneswar</title>
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#events">Skip to events</a>
   <header class="topbar">
+    <a class="brand" href="#home" aria-label="Events in Bhubaneswar home"><span class="brand-mark">✳</span><span>OUT &amp; ABOUT<small>BHUBANESWAR</small></span></a>
     <nav aria-label="Main navigation">
       <a href="#events">Events</a>
       <a href="#about">About</a>
@@ -46,6 +50,10 @@
         <p class="section-note">Six sample events<br>around the city.</p>
       </div>
       <p class="sample-note">These are example listings for the project, not confirmed public events.</p>
+      <aside class="countdown" aria-label="Countdown to the next sample event">
+        <div><p class="eyebrow">UP NEXT</p><h3 id="countdown-event">Rooftop Records</h3><p id="countdown-date">Friday, 13 November · 6:30 PM</p></div>
+        <div class="countdown-clock" aria-hidden="true"><span><b id="countdown-days">--</b><small>DAYS</small></span><span><b id="countdown-hours">--</b><small>HRS</small></span><span><b id="countdown-minutes">--</b><small>MIN</small></span><span><b id="countdown-seconds">--</b><small>SEC</small></span></div>
+      </aside>
       <div class="tools-row">
         <label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Find your kind of thing…" aria-label="Search events"></label>
         <div class="filters" role="group" aria-label="Filter events by category">
@@ -54,55 +62,56 @@
           <button class="filter" data-filter="art" aria-pressed="false">Art &amp; making</button>
           <button class="filter" data-filter="food" aria-pressed="false">Food</button>
         </div>
+        <button class="saved-filter" id="saved-filter" type="button" aria-pressed="false">♡ Saved only</button>
       </div>
       <div class="event-grid" id="event-grid">
-        <article class="event-card" data-category="music" data-search="rooftop records sunset music vinyl listening party saheed nagar bhubaneswar">
+        <article class="event-card" data-category="music" data-start="2026-11-13T18:30:00+05:30" data-search="rooftop records sunset music vinyl listening party saheed nagar bhubaneswar">
           <a class="event-art art-record" href="#register" data-event="Rooftop Records" aria-label="Register for Rooftop Records">
             <img class="poster-image" src="assets/poster-records.svg" alt="" loading="lazy" decoding="async"><span class="art-stamp">MUSIC / 01</span><span class="record-copy">SIDE A<br>AT SUNSET</span><span class="art-arrow">↗</span>
           </a>
           <div class="card-meta"><span>FRI, 13 NOV · 6:30 PM</span><span class="category-tag">MUSIC</span></div>
           <h3>Rooftop Records</h3><p>Bring a record, borrow a view. An easy evening above the city.</p>
-          <div class="card-bottom"><span>Saheed Nagar, Bhubaneswar</span><button class="details-link" type="button" data-details="records">Details ↗</button></div>
+          <div class="card-bottom"><span>Saheed Nagar, Bhubaneswar</span><div class="card-actions"><button class="favorite-button" type="button" data-favorite="records" aria-pressed="false">♡ Save</button><button class="details-link" type="button" data-details="records">Details ↗</button></div></div>
         </article>
-        <article class="event-card" data-category="art" data-search="make a mess zine workshop art print paper creative unit 3 bhubaneswar">
+        <article class="event-card" data-category="art" data-start="2026-11-14T11:00:00+05:30" data-search="make a mess zine workshop art print paper creative unit 3 bhubaneswar">
           <a class="event-art art-zine" href="#register" data-event="Make a Mess: Zine Workshop" aria-label="Register for Make a Mess: Zine Workshop">
             <img class="poster-image" src="assets/poster-zine.svg" alt="" loading="lazy" decoding="async"><span class="art-stamp">MAKE / 02</span><span class="zine-title">MAKE<br>A MESS<span>!</span></span><span class="zine-sub">A ZINE WORKSHOP</span><span class="art-arrow">↗</span>
           </a>
           <div class="card-meta"><span>SAT, 14 NOV · 11:00 AM</span><span class="category-tag">ART &amp; MAKING</span></div>
           <h3>Make a Mess: Zine Workshop</h3><p>Cut, paste, doodle. Go home with a tiny magazine of your own.</p>
-          <div class="card-bottom"><span>Unit 3, Bhubaneswar</span><button class="details-link" type="button" data-details="zine">Details ↗</button></div>
+          <div class="card-bottom"><span>Unit 3, Bhubaneswar</span><div class="card-actions"><button class="favorite-button" type="button" data-favorite="zine" aria-pressed="false">♡ Save</button><button class="details-link" type="button" data-details="zine">Details ↗</button></div></div>
         </article>
-        <article class="event-card" data-category="food" data-search="sunday supper club food dinner local seasonal table old town bhubaneswar">
+        <article class="event-card" data-category="food" data-start="2026-11-15T19:00:00+05:30" data-search="sunday supper club food dinner local seasonal table old town bhubaneswar">
           <a class="event-art art-supper" href="#register" data-event="Sunday Supper Club" aria-label="Register for Sunday Supper Club">
             <img class="poster-image" src="assets/poster-supper.svg" alt="" loading="lazy" decoding="async"><span class="art-stamp">AT THE TABLE / 03</span><span class="supper-copy">SUNDAY<br>SUPPER<br>CLUB</span><span class="art-arrow">↗</span>
           </a>
           <div class="card-meta"><span>SUN, 15 NOV · 7:00 PM</span><span class="category-tag">FOOD</span></div>
           <h3>Sunday Supper Club</h3><p>One long table, a seasonal menu, and strangers who won't be strangers long.</p>
-          <div class="card-bottom"><span>Old Town, Bhubaneswar</span><button class="details-link" type="button" data-details="supper">Details ↗</button></div>
+          <div class="card-bottom"><span>Old Town, Bhubaneswar</span><div class="card-actions"><button class="favorite-button" type="button" data-favorite="supper" aria-pressed="false">♡ Save</button><button class="details-link" type="button" data-details="supper">Details ↗</button></div></div>
         </article>
-        <article class="event-card" data-category="music" data-search="open mic no pressure music acoustic sing saheed nagar bhubaneswar">
+        <article class="event-card" data-category="music" data-start="2026-11-20T19:00:00+05:30" data-search="open mic no pressure music acoustic sing saheed nagar bhubaneswar">
           <a class="event-art art-mic" href="#register" data-event="Open Mic, No Pressure" aria-label="Register for Open Mic, No Pressure">
             <img class="poster-image" src="assets/poster-open-mic.svg" alt="" loading="lazy" decoding="async"><span class="art-stamp">MUSIC / 04</span><span class="mic-copy">TAKE<br>THE<br>MIC</span><span class="art-arrow">↗</span>
           </a>
           <div class="card-meta"><span>FRI, 20 NOV · 7:00 PM</span><span class="category-tag">MUSIC</span></div>
           <h3>Open Mic, No Pressure</h3><p>Songs, stories, bad jokes welcome. Getting up to perform is optional.</p>
-          <div class="card-bottom"><span>Saheed Nagar, Bhubaneswar</span><button class="details-link" type="button" data-details="open-mic">Details ↗</button></div>
+          <div class="card-bottom"><span>Saheed Nagar, Bhubaneswar</span><div class="card-actions"><button class="favorite-button" type="button" data-favorite="open-mic" aria-pressed="false">♡ Save</button><button class="details-link" type="button" data-details="open-mic">Details ↗</button></div></div>
         </article>
-        <article class="event-card" data-category="art" data-search="print patch afternoon art craft workshop collage unit 1 bhubaneswar">
+        <article class="event-card" data-category="art" data-start="2026-11-21T14:00:00+05:30" data-search="print patch afternoon art craft workshop collage unit 1 bhubaneswar">
           <a class="event-art art-patch" href="#register" data-event="Print & Patch Afternoon" aria-label="Register for Print and Patch Afternoon">
             <img class="poster-image" src="assets/poster-patch.svg" alt="" loading="lazy" decoding="async"><span class="art-stamp">MAKE / 05</span><span class="patch-copy">PRINT<br>+ PATCH</span><span class="art-arrow">↗</span>
           </a>
           <div class="card-meta"><span>SAT, 21 NOV · 2:00 PM</span><span class="category-tag">ART &amp; MAKING</span></div>
           <h3>Print &amp; Patch Afternoon</h3><p>Try a simple block print, then put it on a tote or a bit of fabric.</p>
-          <div class="card-bottom"><span>Unit 1, Bhubaneswar</span><button class="details-link" type="button" data-details="patch">Details ↗</button></div>
+          <div class="card-bottom"><span>Unit 1, Bhubaneswar</span><div class="card-actions"><button class="favorite-button" type="button" data-favorite="patch" aria-pressed="false">♡ Save</button><button class="details-link" type="button" data-details="patch">Details ↗</button></div></div>
         </article>
-        <article class="event-card" data-category="food" data-search="chai tabletop games food tea board games old town bhubaneswar">
+        <article class="event-card" data-category="food" data-start="2026-11-22T16:00:00+05:30" data-search="chai tabletop games food tea board games old town bhubaneswar">
           <a class="event-art art-chai" href="#register" data-event="Chai and Tabletop" aria-label="Register for Chai and Tabletop">
             <img class="poster-image" src="assets/poster-chai.svg" alt="" loading="lazy" decoding="async"><span class="art-stamp">AT THE TABLE / 06</span><span class="chai-copy">CHAI<br>&amp; ONE<br>MORE GAME</span><span class="art-arrow">↗</span>
           </a>
           <div class="card-meta"><span>SUN, 22 NOV · 4:00 PM</span><span class="category-tag">FOOD</span></div>
           <h3>Chai and Tabletop</h3><p>Tea, a few board games, and a slow Sunday afternoon with other people.</p>
-          <div class="card-bottom"><span>Old Town, Bhubaneswar</span><button class="details-link" type="button" data-details="chai">Details ↗</button></div>
+          <div class="card-bottom"><span>Old Town, Bhubaneswar</span><div class="card-actions"><button class="favorite-button" type="button" data-favorite="chai" aria-pressed="false">♡ Save</button><button class="details-link" type="button" data-details="chai">Details ↗</button></div></div>
         </article>
       </div>
       <p class="no-results" id="no-results" hidden>No plans found. Try another search?</p>
@@ -130,6 +139,9 @@
     <p class="eyebrow" id="dialog-category">EVENT DETAILS</p><h2 id="dialog-title"></h2><p class="dialog-description" id="dialog-description"></p>
     <dl class="dialog-facts"><div><dt>When</dt><dd id="dialog-when"></dd></div><div><dt>Where</dt><dd id="dialog-where"></dd></div><div><dt>Good to know</dt><dd id="dialog-extra"></dd></div></dl>
     <a class="round-link dialog-register" id="dialog-register" href="#register">Save me a spot <span aria-hidden="true">↗</span></a>
+    <button class="calendar-button" id="calendar-button" type="button">Add to calendar <span aria-hidden="true">↓</span></button>
+    <button class="share-button" id="share-button" type="button">Share event <span aria-hidden="true">↗</span></button>
+    <p class="share-message" id="share-message" role="status" aria-live="polite"></p>
   </dialog>
   <footer id="about"><p>A student-made event guide.</p><p class="footer-location">Bhubaneswar</p><a href="#home">BACK TO TOP ↑</a></footer>
 </body>

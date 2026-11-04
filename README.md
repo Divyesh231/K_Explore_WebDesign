@@ -1,24 +1,27 @@
 # Events in Bhubaneswar
 
-A responsive event guide for Bhubaneswar, built with HTML, CSS and JavaScript. The event listings and details are sample content for this project.
+I made this website as a guide to things people could do around Bhubaneswar. It has sample music, art and food events, with poster designs I made for the page. The events are examples for the project, not real confirmed listings.
 
-## Features
+## What you can do
 
-- Browse event cards with dates, areas, descriptions and original poster artwork.
-- Search events and filter by music, art or food.
-- Open an event’s details and select it in the registration form.
-- Validate the registration form and show a confirmation.
-- Save registrations and the light or dark theme in the browser using `localStorage`.
+- Search events and filter them by category.
+- Save favorites and show only the events you saved.
+- Check the countdown to the next event.
+- Open an event for more details, share its link, or download a calendar file.
+- Fill in the sign-up form and see your saved plans on the page.
+- Switch between light and dark mode.
 
-Registrations stay in the visitor’s browser. The site does not send them to an organizer or a server.
+Favorites, sign-ups and the theme are saved in your browser with `localStorage`. Nothing is sent to an event organizer.
 
-## Run the project
+## Running it
 
-Open `index.html` in a web browser. No installation or build step is needed.
+Open `index.html` in a browser. There’s no setup or install step.
 
-## Project files
+## Files
 
-- `index.html` contains the page and sample event listings.
-- `styles.css` contains the layout, colors and responsive styles.
-- `script.js` contains search, filters, event details, form validation and browser storage.
-- `assets/` contains the event poster SVG images.
+- `index.html` has the page and the sample event listings.
+- `styles.css` has the colors, layout and mobile styles.
+- `script.js` handles search, filters, favorites, the countdown, event details and the form.
+- `assets/` has the event poster artwork.
+
+The calendar download uses the sample event dates and assumes each event lasts two hours. If you change the listings, update the dates in both `index.html` and `script.js` too.
