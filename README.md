@@ -1,27 +1,56 @@
 # Events in Bhubaneswar
 
-I made this website as a guide to things people could do around Bhubaneswar. It has sample music, art and food events, with poster designs I made for the page. The events are examples for the project, not real confirmed listings.
+This is a small event guide website I built for a web design project. It brings together sample music, art and food events in Bhubaneswar so visitors can browse ideas, save the ones they like and make a plan.
 
-## What you can do
+The events are made-up examples for the project. They are not real listings, and signing up on the page does not contact an organiser.
 
-- Search events and filter them by category.
-- Save favorites and show only the events you saved.
-- Check the countdown to the next event.
-- Open an event for more details, share its link, or download a calendar file.
-- Fill in the sign-up form and see your saved plans on the page.
+## Project structure
+
+```text
+Web_Designing/
+├── index.html
+├── styles.css
+├── script.js
+├── README.md
+└── assets/
+    ├── poster-chai.svg
+    ├── poster-open-mic.svg
+    ├── poster-patch.svg
+    ├── poster-records.svg
+    ├── poster-supper.svg
+    └── poster-zine.svg
+```
+
+### What the files do
+
+- **`index.html`** contains the page layout, event information, registration form and details dialog.
+- **`styles.css`** controls the colors, typography, poster cards, responsive layout, dark theme and small animations.
+- **`script.js`** handles the countdown, search and category filters, saved favorites, event sharing, calendar downloads, form validation and theme preference.
+- **`assets/`** contains the SVG posters used on the event cards.
+- **`README.md`** is this project guide.
+
+## Features
+
+- Browse six sample events with custom poster artwork.
+- Search by event name or details, or filter by music, art and food.
+- Save favorite events and switch to a list of saved events.
+- See a countdown to the next event in the sample schedule.
+- Open an event’s details, share a link to it, or download a calendar file.
+- Use the registration form and view saved plans on the page.
 - Switch between light and dark mode.
+- Use the page on desktop or mobile, with keyboard focus styles and a skip link.
 
-Favorites, sign-ups and the theme are saved in your browser with `localStorage`. Nothing is sent to an event organizer.
+## How to run it
 
-## Running it
+There is no install step or build command.
 
-Open `index.html` in a browser. There’s no setup or install step.
+1. Download the repository and unzip it, or open the project folder on your computer.
+2. Open **`index.html`** in a web browser.
 
-## Files
+Keep `styles.css`, `script.js` and the `assets` folder beside `index.html` so the page can load its styles, features and posters.
 
-- `index.html` has the page and the sample event listings.
-- `styles.css` has the colors, layout and mobile styles.
-- `script.js` handles search, filters, favorites, the countdown, event details and the form.
-- `assets/` has the event poster artwork.
+## A few notes
 
-The calendar download uses the sample event dates and assumes each event lasts two hours. If you change the listings, update the dates in both `index.html` and `script.js` too.
+Favorites, sample registrations and the theme preference are stored in the browser with `localStorage`. They do not sync to another device or go to a server. The registration form is a front-end demonstration only.
+
+The countdown and calendar downloads use the dates in the sample listings. Calendar files assume an event lasts two hours. If you change an event’s date, update its date in both `index.html` and `script.js` so the card, countdown and calendar stay in sync.
