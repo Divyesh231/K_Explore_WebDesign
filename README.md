@@ -32,7 +32,11 @@ Web_Designing/
 ## Features
 
 - Browse six sample events with custom poster artwork.
-- Search by event name or details, or filter by music, art and food.
+- See a filled-capacity bar and remaining spot count on each event.
+- Search by event name or details, then use one compact filter menu for categories, coming-soon events, almost-full events or saved events.
+- Sort the list by date, name or spots left.
+- Use quick picks for events coming up in the next 14 days or events that are almost full.
+- Sort events by date, name or spots left.
 - Save favorite events and switch to a list of saved events.
 - See a countdown to the next event in the sample schedule.
 - Open an event’s details, share a link to it, or download a calendar file.
@@ -53,4 +57,4 @@ Keep `styles.css`, `script.js` and the `assets` folder beside `index.html` so th
 
 Favorites, sample registrations and the theme preference are stored in the browser with `localStorage`. They do not sync to another device or go to a server. The registration form is a front-end demonstration only.
 
-The countdown and calendar downloads use the dates in the sample listings. Calendar files assume an event lasts two hours. If you change an event’s date, update its date in both `index.html` and `script.js` so the card, countdown and calendar stay in sync.
+The countdown and calendar downloads use the dates in the sample listings. Capacity bars also use made-up numbers in each event card; they are only visual examples and do not change when someone signs up. Calendar files assume an event lasts two hours. If you change an event’s date, update its date in both `index.html` and `script.js` so the card, countdown and calendar stay in sync.

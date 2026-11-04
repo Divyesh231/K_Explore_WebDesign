@@ -1,14 +1,57 @@
-// Search and category buttons narrow down the event cards.
+// Search, filtering and sorting for the event list.
 const searchInput = document.querySelector('#search');
-const filterButtons = document.querySelectorAll('.filter');
-const eventCards = document.querySelectorAll('.event-card');
+const eventCards = [...document.querySelectorAll('.event-card')];
+const eventGrid = document.querySelector('#event-grid');
+const eventFilter = document.querySelector('#event-filter');
+const sortSelect = document.querySelector('#sort-by');
 const noResults = document.querySelector('#no-results');
 const resultsCount = document.querySelector('#results-count');
-let selectedCategory = 'all';
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const filterHideTimers = new WeakMap();
+
+if (!reduceMotion && 'IntersectionObserver' in window) {
+  const revealTargets = document.querySelectorAll(
+    '.section-heading,.countdown,.event-card,.signup-section .signup-aside,.signup-section form'
+  );
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
+
+  revealTargets.forEach((target, index) => {
+    target.classList.add('reveal-on-scroll');
+    target.style.setProperty('--reveal-delay', `${Math.min(index % 6, 5) * 65}ms`);
+    revealObserver.observe(target);
+  });
+}
+
+// The capacity figures are sample values stored on each event card.
+function renderAvailability() {
+  eventCards.forEach((card) => {
+    const capacity = Math.max(1, Number(card.dataset.capacity) || 1);
+    const spotsLeft = Math.min(capacity, Math.max(0, Number(card.dataset.spotsLeft) || 0));
+    const filledPercent = Math.round(((capacity - spotsLeft) / capacity) * 100);
+    const eventName = card.querySelector('h3').textContent;
+    const leftText = `${spotsLeft} ${spotsLeft === 1 ? 'spot' : 'spots'} left`;
+    const track = card.querySelector('.availability-track');
+    const availability = card.querySelector('.availability');
+
+    card.querySelector('.availability-left').textContent = leftText;
+    card.querySelector('.availability-bar').style.width = `${filledPercent}%`;
+    track.setAttribute('aria-label', `${eventName} sample availability`);
+    track.setAttribute('aria-valuenow', String(filledPercent));
+    track.setAttribute('aria-valuetext', leftText);
+    track.classList.toggle('almost-full', filledPercent >= 75);
+    availability.classList.toggle('almost-full', filledPercent >= 75);
+  });
+}
+
+renderAvailability();
 const favoritesKey = 'k-explore-favorites';
 const favoriteButtons = document.querySelectorAll('[data-favorite]');
-const savedFilter = document.querySelector('#saved-filter');
-let savedOnly = false;
 
 function readFavorites() {
   try {
@@ -23,10 +66,12 @@ let favoriteIds = readFavorites();
 
 function updateEvents() {
   const searchTerm = searchInput.value.trim().toLowerCase();
+  const selectedFilter = eventFilter.value;
+  const now = Date.now();
+  const comingSoonCutoff = now + 14 * 24 * 60 * 60 * 1000;
   let visibleCount = 0;
 
   eventCards.forEach((card) => {
-    const categoryMatches = selectedCategory === 'all' || card.dataset.category === selectedCategory;
     const cardDescription = [
       card.querySelector('h3').textContent,
       card.querySelector('.event-card > p').textContent,
@@ -34,33 +79,87 @@ function updateEvents() {
     ].join(' ');
     const searchableText = `${card.dataset.search} ${cardDescription}`.toLowerCase();
     const searchMatches = searchableText.includes(searchTerm);
-    const favoriteMatches = !savedOnly || favoriteIds.includes(card.querySelector('[data-details]').dataset.details);
-    const showCard = categoryMatches && searchMatches && favoriteMatches;
+    const isSaved = favoriteIds.includes(card.querySelector('[data-details]').dataset.details);
+    const startsAt = new Date(card.dataset.start).getTime();
+    const capacity = Number(card.dataset.capacity) || 1;
+    const spotsLeft = Number(card.dataset.spotsLeft) || 0;
+    const isAlmostFull = ((capacity - spotsLeft) / capacity) >= .75;
+    const filterMatches = selectedFilter === 'all'
+      || selectedFilter === card.dataset.category
+      || (selectedFilter === 'soon' && startsAt >= now && startsAt <= comingSoonCutoff)
+      || (selectedFilter === 'almost' && isAlmostFull)
+      || (selectedFilter === 'saved' && isSaved);
+    const showCard = filterMatches && searchMatches;
 
-    card.hidden = !showCard;
+    if (showCard) {
+      const hideTimer = filterHideTimers.get(card);
+      if (hideTimer) window.clearTimeout(hideTimer);
+      filterHideTimers.delete(card);
+      card.classList.remove('is-filtering-out');
+      if (card.hidden) {
+        card.hidden = false;
+        if (!reduceMotion) card.animate([
+          { opacity: 0, transform: 'translateY(8px)' },
+          { opacity: 1, transform: 'translateY(0)' }
+        ], { duration: 360, easing: 'cubic-bezier(.2,.7,.2,1)' });
+      }
+    } else if (!card.hidden && !reduceMotion) {
+      if (!filterHideTimers.has(card)) {
+        card.classList.add('is-filtering-out');
+        const hideTimer = window.setTimeout(() => {
+          card.hidden = true;
+          card.classList.remove('is-filtering-out');
+          filterHideTimers.delete(card);
+        }, 240);
+        filterHideTimers.set(card, hideTimer);
+      }
+    } else {
+      card.hidden = true;
+    }
     if (showCard) visibleCount += 1;
   });
 
   noResults.hidden = visibleCount > 0;
-  noResults.textContent = savedOnly
+  noResults.textContent = selectedFilter === 'saved'
     ? 'No saved events match. Save an event with ♡ to keep it here.'
-    : 'No plans found. Try another search?';
+    : selectedFilter === 'soon'
+      ? 'No upcoming events in the next 14 days match these filters.'
+      : selectedFilter === 'almost'
+        ? 'No almost-full events match these filters.'
+        : 'No plans found. Try another search?';
   resultsCount.textContent = `${visibleCount} event${visibleCount === 1 ? '' : 's'} shown.`;
+}
+
+function sortEventCards() {
+  const oldPositions = new Map(eventCards.filter((card) => !card.hidden)
+    .map((card) => [card, card.getBoundingClientRect()]));
+  const sortBy = sortSelect.value;
+  const sorted = [...eventCards].sort((a, b) => {
+    if (sortBy === 'name') return a.querySelector('h3').textContent.localeCompare(b.querySelector('h3').textContent);
+    if (sortBy === 'spots') return Number(b.dataset.spotsLeft) - Number(a.dataset.spotsLeft);
+    return new Date(a.dataset.start) - new Date(b.dataset.start);
+  });
+  eventGrid.append(...sorted);
+
+  if (reduceMotion) return;
+  sorted.filter((card) => !card.hidden).forEach((card) => {
+    const previous = oldPositions.get(card);
+    if (!previous) return;
+    const current = card.getBoundingClientRect();
+    const offsetX = previous.left - current.left;
+    const offsetY = previous.top - current.top;
+    if (!offsetX && !offsetY) return;
+    card.animate([
+      { transform: `translate(${offsetX}px, ${offsetY}px)` },
+      { transform: 'translate(0, 0)' }
+    ], { duration: 360, easing: 'cubic-bezier(.2,.7,.2,1)' });
+  });
 }
 
 searchInput.addEventListener('input', updateEvents);
 updateEvents();
-filterButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    selectedCategory = button.dataset.filter;
-    filterButtons.forEach((item) => {
-      const isSelected = item === button;
-      item.classList.toggle('active', isSelected);
-      item.setAttribute('aria-pressed', String(isSelected));
-    });
-    updateEvents();
-  });
-});
+eventFilter.addEventListener('change', updateEvents);
+sortSelect.addEventListener('change', sortEventCards);
 
 function renderFavorites() {
   favoriteButtons.forEach((button) => {
@@ -68,8 +167,6 @@ function renderFavorites() {
     button.setAttribute('aria-pressed', String(isSaved));
     button.textContent = isSaved ? '♥ Saved' : '♡ Save';
   });
-  savedFilter.setAttribute('aria-pressed', String(savedOnly));
-  savedFilter.textContent = savedOnly ? '♥ Showing saved' : '♡ Saved only';
   updateEvents();
 }
 
@@ -84,10 +181,6 @@ favoriteButtons.forEach((button) => {
   });
 });
 
-savedFilter.addEventListener('click', () => {
-  savedOnly = !savedOnly;
-  renderFavorites();
-});
 renderFavorites();
 
 // A card's sign-up link preselects that event in the form.
@@ -189,10 +282,21 @@ function updateCountdown() {
   countdownRegister.dataset.event = eventName;
   countdownTitle.textContent = eventName;
   countdownDate.textContent = nextCard.querySelector('.card-meta span').textContent;
-  countdownFields.days.textContent = String(Math.floor(remaining / 86400000)).padStart(2, '0');
-  countdownFields.hours.textContent = String(Math.floor((remaining % 86400000) / 3600000)).padStart(2, '0');
-  countdownFields.minutes.textContent = String(Math.floor((remaining % 3600000) / 60000)).padStart(2, '0');
-  countdownFields.seconds.textContent = String(Math.floor((remaining % 60000) / 1000)).padStart(2, '0');
+  const clockValues = [
+    [countdownFields.days, Math.floor(remaining / 86400000)],
+    [countdownFields.hours, Math.floor((remaining % 86400000) / 3600000)],
+    [countdownFields.minutes, Math.floor((remaining % 3600000) / 60000)],
+    [countdownFields.seconds, Math.floor((remaining % 60000) / 1000)]
+  ];
+  clockValues.forEach(([field, value]) => {
+    const nextValue = String(value).padStart(2, '0');
+    if (field.textContent === nextValue) return;
+    field.textContent = nextValue;
+    if (!reduceMotion) field.animate([
+      { opacity: .35, transform: 'translateY(-5px)' },
+      { opacity: 1, transform: 'translateY(0)' }
+    ], { duration: 240, easing: 'ease-out' });
+  });
 }
 
 updateCountdown();

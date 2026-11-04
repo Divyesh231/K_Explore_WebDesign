@@ -373,28 +373,6 @@ a {
   color:var(--ink)
 }
 
-.filters {
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap
-}
-
-.filter {
-  background:transparent;
-  border:1px solid #cfc8b9;
-  padding:9px 13px;
-  border-radius:30px;
-  font:11px var(--sans);
-  color:#686b61;
-  cursor:pointer
-}
-
-.filter:hover,.filter.active {
-  background:var(--green);
-  border-color:var(--green);
-  color:#fff
-}
-
 .event-grid {
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
@@ -855,14 +833,6 @@ footer>a:last-child {
     width:100%
   }
 
-  .filters {
-    gap:6px
-  }
-
-  .filter {
-    padding:8px 10px
-  }
-
   .event-grid {
     grid-template-columns:1fr;
     gap:32px
@@ -935,23 +905,6 @@ footer>a:last-child {
   }
 }
 
-.saved-filter {
-  padding:9px 12px;
-  border:1px solid var(--line);
-  border-radius:30px;
-  background:transparent;
-  color:var(--green);
-  font:11px var(--sans);
-  white-space:nowrap;
-  cursor:pointer
-}
-
-.saved-filter[aria-pressed="true"] {
-  background:var(--orange);
-  color:#fff;
-  border-color:var(--orange)
-}
-
 .card-actions {
   display:flex;
   align-items:center;
@@ -994,10 +947,6 @@ footer>a:last-child {
   font-size:11px
 }
 
-body[data-theme="dark"] .saved-filter {
-  border-color:#606657
-}
-
 @media(max-width:800px) {
   .tools-row {
     flex-wrap:wrap
@@ -1005,14 +954,6 @@ body[data-theme="dark"] .saved-filter {
 
   .tools-row .search-box {
     flex:1 1 100%
-  }
-
-  .filters {
-    flex:1
-  }
-
-  .saved-filter {
-    margin-left:auto
   }
 
   .card-bottom {
@@ -1034,10 +975,6 @@ body[data-theme="dark"] .saved-filter {
   .tools-row {
     align-items:stretch;
     flex-direction:column
-  }
-
-  .saved-filter {
-    align-self:flex-start
   }
 
   .card-bottom {
@@ -1246,17 +1183,6 @@ body[data-theme="dark"] .event-card>p,body[data-theme="dark"] .card-meta,body[da
 
 body[data-theme="dark"] .search-box input {
   color:var(--ink)
-}
-
-body[data-theme="dark"] .filter {
-  border-color:#606657;
-  color:var(--ink)
-}
-
-body[data-theme="dark"] .filter.active,body[data-theme="dark"] .filter:hover {
-  background:#718466;
-  border-color:#718466;
-  color:#fff
 }
 
 body[data-theme="dark"] footer {
@@ -1709,5 +1635,277 @@ body[data-theme="dark"] .countdown-clock span {
 @media(prefers-reduced-motion:reduce) {
   .ribbon-track {
     animation:none
+  }
+}
+
+.availability {
+  margin:13px 0 16px
+}
+
+.availability-label {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:7px;
+  font:9px var(--mono)
+}
+
+.availability-left {
+  color:var(--muted)
+}
+
+.availability.almost-full .availability-left {
+  color:var(--orange)
+}
+
+.availability-track {
+  height:5px;
+  overflow:hidden;
+  background:#d9d2c4;
+  border-radius:10px
+}
+
+.availability-bar {
+  display:block;
+  height:100%;
+  width:0;
+  border-radius:inherit;
+  background:var(--green);
+  transition:width .5s ease
+}
+
+.availability-track.almost-full .availability-bar {
+  background:var(--orange)
+}
+
+body[data-theme="dark"] .availability-track {
+  background:#444a3f
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .availability-bar {
+    transition:none
+  }
+}
+
+/* Discovery controls and shared motion timings. */
+body {
+  transition:background-color .35s ease,color .35s ease
+}
+
+.topbar,.events-section,.my-plans,.saved-plan,.event-dialog,.countdown {
+  transition:background-color .35s ease,color .35s ease,border-color .35s ease
+}
+
+.event-card {
+  transition:background-color .35s ease,color .35s ease,border-color .35s ease,
+    transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s ease
+}
+
+.filter-box select,.theme-toggle,.nav-ticket,
+.round-link,.details-link,.favorite-button,.calendar-button,.share-button,.submit-button,
+.sort-box select {
+  transition:color .22s ease,background-color .22s ease,border-color .22s ease,transform .22s ease,box-shadow .22s ease
+}
+
+.filter-box {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:var(--muted);
+  font:9px var(--mono);
+  letter-spacing:.1em;
+  white-space:nowrap
+}
+
+.filter-box select {
+  min-width:160px;
+  padding:10px 28px 10px 11px;
+  border:1px solid var(--line);
+  border-radius:3px;
+  background:var(--paper);
+  color:var(--ink);
+  font:11px var(--sans);
+  cursor:pointer
+}
+
+.filter-box select:hover {
+  border-color:var(--green)
+}
+
+.sort-box {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:var(--muted);
+  font:9px var(--mono);
+  letter-spacing:.1em;
+  white-space:nowrap
+}
+
+.sort-box select {
+  min-width:145px;
+  padding:10px 28px 10px 11px;
+  border:1px solid var(--line);
+  border-radius:3px;
+  background:var(--paper);
+  color:var(--ink);
+  font:11px var(--sans);
+  cursor:pointer
+}
+
+.sort-box select:hover {
+  border-color:var(--green)
+}
+
+.filter-box select:hover,.nav-ticket:hover,
+.round-link:hover,.calendar-button:hover,.share-button:hover,.submit-button:hover {
+  transform:translateY(-2px)
+}
+
+.theme-toggle:hover,.details-link:hover,.favorite-button:hover {
+  transform:translateY(-1px)
+}
+
+.event-art:hover .poster-image {
+  transform:scale(1.045)
+}
+
+body[data-theme="dark"] .filter-box select,
+body[data-theme="dark"] .sort-box select {
+  border-color:#606657
+}
+
+body[data-theme="dark"] .sort-box select {
+  background:#1d211b
+}
+
+@media(max-width:960px) {
+  .tools-row {
+    flex-wrap:wrap
+  }
+
+  .tools-row .search-box {
+    flex:1 1 100%
+  }
+
+  .sort-box {
+    margin-left:auto
+  }
+}
+
+@media(max-width:800px) {
+  .sort-box {
+    margin-left:auto
+  }
+}
+
+@media(max-width:620px) {
+  .sort-box {
+    align-self:flex-start;
+    margin-left:0
+  }
+
+  .filter-box {
+    align-self:flex-start
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  body,.topbar,.events-section,.my-plans,.event-card,.saved-plan,.event-dialog,.countdown,
+  .filter-box select,.theme-toggle,.nav-ticket,
+  .round-link,.details-link,.favorite-button,.calendar-button,.share-button,.submit-button,
+  .sort-box select,.poster-image {
+    transition:none!important
+  }
+}
+
+/* Page entrance, scroll reveals and dialog motion. */
+.hero-copy>.eyebrow { animation:hero-rise .65s .02s both cubic-bezier(.2,.7,.2,1) }
+.hero h1 { animation:hero-rise .72s .1s both cubic-bezier(.2,.7,.2,1) }
+.hero-intro { animation:hero-rise .72s .2s both cubic-bezier(.2,.7,.2,1) }
+.hero-actions { animation:hero-rise .72s .3s both cubic-bezier(.2,.7,.2,1) }
+.hero-footnote { animation:hero-rise .72s .4s both cubic-bezier(.2,.7,.2,1) }
+.hero-art { animation:art-arrive .95s .16s both cubic-bezier(.2,.7,.2,1) }
+
+@keyframes hero-rise {
+  from { opacity:0; transform:translateY(20px) }
+  to { opacity:1; transform:translateY(0) }
+}
+
+@keyframes art-arrive {
+  from { opacity:0; transform:translateY(14px) scale(.965) }
+  to { opacity:1; transform:translateY(0) scale(1) }
+}
+
+.reveal-on-scroll {
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .7s var(--reveal-delay,0ms) cubic-bezier(.2,.7,.2,1),
+    transform .7s var(--reveal-delay,0ms) cubic-bezier(.2,.7,.2,1)
+}
+
+.reveal-on-scroll.is-visible {
+  opacity:1;
+  transform:translateY(0)
+}
+
+.event-card.is-filtering-out {
+  opacity:0!important;
+  transform:translateY(10px)!important;
+  pointer-events:none;
+  transition:opacity .24s ease,transform .24s ease
+}
+
+.event-card.reveal-on-scroll.is-visible:hover {
+  transform:translateY(-4px)
+}
+
+.event-dialog {
+  opacity:0;
+  transform:translateY(16px) scale(.985);
+  transition:opacity .28s ease,transform .28s cubic-bezier(.2,.7,.2,1),
+    overlay .28s allow-discrete,display .28s allow-discrete
+}
+
+.event-dialog[open] {
+  opacity:1;
+  transform:translateY(0) scale(1)
+}
+
+.event-dialog::backdrop {
+  background-color:transparent;
+  transition:background-color .28s ease,overlay .28s allow-discrete,display .28s allow-discrete
+}
+
+.event-dialog[open]::backdrop {
+  background-color:#171a16b8
+}
+
+@starting-style {
+  .event-dialog[open] {
+    opacity:0;
+    transform:translateY(16px) scale(.985)
+  }
+
+  .event-dialog[open]::backdrop {
+    background-color:transparent
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .hero-copy>.eyebrow,.hero h1,.hero-intro,.hero-actions,.hero-footnote,.hero-art {
+    animation:none!important
+  }
+
+  .reveal-on-scroll {
+    opacity:1;
+    transform:none;
+    transition:none!important
+  }
+
+  .event-dialog,.event-dialog::backdrop {
+    transition:none!important
   }
 }
