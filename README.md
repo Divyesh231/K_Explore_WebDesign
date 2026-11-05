@@ -4,22 +4,6 @@ This is a small event guide website I built for a web design project. It brings 
 
 The events are made-up examples for the project. They are not real listings, and signing up on the page does not contact an organiser.
 
-## Screenshots
-
-These show the home page and event list on desktop and Android.
-
-### Desktop
-
-![Desktop home page](screenshots/Screenshot%202026-11-05%20102856.png)
-
-![Desktop event list](screenshots/Screenshot%202026-11-05%20102923.png)
-
-### Mobile
-
-![Mobile home page](screenshots/android2.jpeg)
-
-![Mobile event list](screenshots/android3.jpeg)
-
 ## Design choices
 
 I used a warm paper background with forest green, terracotta and yellow accents to match the handmade event posters. On desktop, the search, filter and sort controls sit in one row; on smaller screens they stack to make them easier to use.
@@ -83,19 +67,24 @@ There is no install step or build command.
 
 Keep `styles.css`, `script.js` and the `assets` folder beside `index.html` so the page can load its styles, features and posters.
 
-## Publishing with GitHub Pages
-
-This is a static site, so it can be published directly from the repository:
-
-1. Open the repository on GitHub and go to **Settings → Pages**.
-2. Under **Build and deployment**, choose **Deploy from a branch**.
-3. Select the `main` branch and the `/ (root)` folder, then click **Save**.
-4. Wait for GitHub Pages to finish, then open the site link shown on the Pages settings screen.
-
-For this repository, the Pages address should be `https://divyesh231.github.io/K_Explore_WebDesign/` once publishing is enabled. No custom domain is needed.
-
 ## A few notes
 
 Favorites, sample registrations and the theme preference are stored in the browser with `localStorage`. They do not sync to another device or go to a server. The registration form is a front-end demonstration only.
 
 The countdown and calendar downloads use the dates in the sample listings. Starting capacity is made up, and sign-ups only adjust the spot count in the current browser; it is not shared booking data. Calendar files assume an event lasts two hours. If you change an event’s date, update its date in both `index.html` and `script.js` so the card, countdown and calendar stay in sync.
+
+## Screenshots
+
+These show the site on desktop and Android.
+
+### Desktop
+
+<p><img src="screenshots/Screenshot%202026-11-05%20102856.png" alt="Desktop home page" width="900"></p>
+
+<p><img src="screenshots/Screenshot%202026-11-05%20102923.png" alt="Desktop event list" width="900"></p>
+
+### Mobile
+
+<p><img src="screenshots/android2.jpeg" alt="Android home page" width="280"></p>
+
+<p><img src="screenshots/android3.jpeg" alt="Android event list" width="280"></p>
