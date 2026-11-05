@@ -6,6 +6,8 @@ const eventFilter = document.querySelector('#event-filter');
 const sortSelect = document.querySelector('#sort-by');
 const noResults = document.querySelector('#no-results');
 const resultsCount = document.querySelector('#results-count');
+const storageKey = 'k-explore-registrations';
+const eventSelect = document.querySelector('#event');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const filterHideTimers = new WeakMap();
 
@@ -30,11 +32,16 @@ if (!reduceMotion && 'IntersectionObserver' in window) {
 
 // The capacity figures are sample values stored on each event card.
 function renderAvailability() {
+  const registrations = getRegistrations();
   eventCards.forEach((card) => {
     const capacity = Math.max(1, Number(card.dataset.capacity) || 1);
-    const spotsLeft = Math.min(capacity, Math.max(0, Number(card.dataset.spotsLeft) || 0));
-    const filledPercent = Math.round(((capacity - spotsLeft) / capacity) * 100);
+    const sampleSpotsLeft = Number(card.dataset.initialSpotsLeft ?? card.dataset.spotsLeft) || 0;
+    card.dataset.initialSpotsLeft = String(sampleSpotsLeft);
     const eventName = card.querySelector('h3').textContent;
+    const localSignups = registrations.filter((registration) => registration.event === eventName).length;
+    const spotsLeft = Math.max(0, Math.min(capacity, sampleSpotsLeft - localSignups));
+    card.dataset.currentSpotsLeft = String(spotsLeft);
+    const filledPercent = Math.round(((capacity - spotsLeft) / capacity) * 100);
     const leftText = `${spotsLeft} ${spotsLeft === 1 ? 'spot' : 'spots'} left`;
     const track = card.querySelector('.availability-track');
     const availability = card.querySelector('.availability');
@@ -46,6 +53,13 @@ function renderAvailability() {
     track.setAttribute('aria-valuetext', leftText);
     track.classList.toggle('almost-full', filledPercent >= 75);
     availability.classList.toggle('almost-full', filledPercent >= 75);
+
+    const eventOption = [...eventSelect.options].find((option) => option.value === eventName);
+    if (eventOption) {
+      eventOption.dataset.defaultLabel ||= eventOption.textContent;
+      eventOption.disabled = spotsLeft === 0;
+      eventOption.textContent = spotsLeft === 0 ? `${eventOption.dataset.defaultLabel} — full` : eventOption.dataset.defaultLabel;
+    }
   });
 }
 
@@ -82,7 +96,7 @@ function updateEvents() {
     const isSaved = favoriteIds.includes(card.querySelector('[data-details]').dataset.details);
     const startsAt = new Date(card.dataset.start).getTime();
     const capacity = Number(card.dataset.capacity) || 1;
-    const spotsLeft = Number(card.dataset.spotsLeft) || 0;
+    const spotsLeft = Number(card.dataset.currentSpotsLeft ?? card.dataset.spotsLeft) || 0;
     const isAlmostFull = ((capacity - spotsLeft) / capacity) >= .75;
     const filterMatches = selectedFilter === 'all'
       || selectedFilter === card.dataset.category
@@ -136,7 +150,9 @@ function sortEventCards() {
   const sortBy = sortSelect.value;
   const sorted = [...eventCards].sort((a, b) => {
     if (sortBy === 'name') return a.querySelector('h3').textContent.localeCompare(b.querySelector('h3').textContent);
-    if (sortBy === 'spots') return Number(b.dataset.spotsLeft) - Number(a.dataset.spotsLeft);
+    if (sortBy === 'spots') {
+      return Number(b.dataset.currentSpotsLeft ?? b.dataset.spotsLeft) - Number(a.dataset.currentSpotsLeft ?? a.dataset.spotsLeft);
+    }
     return new Date(a.dataset.start) - new Date(b.dataset.start);
   });
   eventGrid.append(...sorted);
@@ -154,6 +170,12 @@ function sortEventCards() {
       { transform: 'translate(0, 0)' }
     ], { duration: 360, easing: 'cubic-bezier(.2,.7,.2,1)' });
   });
+}
+
+function refreshEventAvailability() {
+  renderAvailability();
+  updateEvents();
+  if (sortSelect.value === 'spots') sortEventCards();
 }
 
 searchInput.addEventListener('input', updateEvents);
@@ -184,7 +206,6 @@ favoriteButtons.forEach((button) => {
 renderFavorites();
 
 // A card's sign-up link preselects that event in the form.
-const eventSelect = document.querySelector('#event');
 document.querySelectorAll('[data-event]').forEach((link) => {
   link.addEventListener('click', () => {
     eventSelect.value = link.dataset.event;
@@ -384,7 +405,6 @@ dialogRegister.addEventListener('click', () => {
 });
 
 // Save registrations in this browser so the visitor can see and remove them.
-const storageKey = 'k-explore-registrations';
 const savedPlansSection = document.querySelector('#my-plans');
 const savedList = document.querySelector('#saved-list');
 const form = document.querySelector('#registration-form');
@@ -434,6 +454,7 @@ function renderRegistrations() {
       const updated = getRegistrations().filter((item) => item.id !== registration.id);
       saveRegistrations(updated);
       renderRegistrations();
+      refreshEventAvailability();
     });
 
     row.append(text, removeButton);
@@ -458,6 +479,12 @@ form.addEventListener('submit', (event) => {
   checkPhoneNumber();
   if (!form.reportValidity()) return;
 
+  const selectedCard = eventCards.find((card) => card.querySelector('h3').textContent === eventSelect.value);
+  if (!selectedCard || Number(selectedCard.dataset.currentSpotsLeft) <= 0) {
+    message.textContent = 'That sample event is full. Please choose another one.';
+    return;
+  }
+
   const registration = {
     id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
     name: document.querySelector('#name').value.trim(),
@@ -470,18 +497,20 @@ form.addEventListener('submit', (event) => {
   registrations.push(registration);
   const wasSaved = saveRegistrations(registrations);
   message.textContent = wasSaved
-    ? `You're on the list, ${registration.name.split(/\s+/)[0]}! Your plan is saved in this browser.`
+    ? `You're on the list, ${registration.name.split(/\s+/)[0]}! This browser saved your plan and updated the spots left.`
     : 'Thanks! Your form is complete, but this browser could not save the plan.';
 
   form.reset();
   phoneInput.setCustomValidity('');
   renderRegistrations();
+  refreshEventAvailability();
 });
 
 document.querySelector('#clear-plans').addEventListener('click', () => {
   if (!window.confirm('Clear all saved plans from this browser?')) return;
   saveRegistrations([]);
   renderRegistrations();
+  refreshEventAvailability();
   message.textContent = 'Your saved plans have been cleared.';
 });
 

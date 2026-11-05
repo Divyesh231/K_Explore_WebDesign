@@ -33,10 +33,9 @@ Web_Designing/
 
 - Browse six sample events with custom poster artwork.
 - See a filled-capacity bar and remaining spot count on each event.
+- Watch the local spot count decrease after a sign-up and return when you remove that plan.
 - Search by event name or details, then use one compact filter menu for categories, coming-soon events, almost-full events or saved events.
 - Sort the list by date, name or spots left.
-- Use quick picks for events coming up in the next 14 days or events that are almost full.
-- Sort events by date, name or spots left.
 - Save favorite events and switch to a list of saved events.
 - See a countdown to the next event in the sample schedule.
 - Open an event’s details, share a link to it, or download a calendar file.
@@ -53,8 +52,19 @@ There is no install step or build command.
 
 Keep `styles.css`, `script.js` and the `assets` folder beside `index.html` so the page can load its styles, features and posters.
 
+## Publishing with GitHub Pages
+
+This is a static site, so it can be published directly from the repository:
+
+1. Open the repository on GitHub and go to **Settings → Pages**.
+2. Under **Build and deployment**, choose **Deploy from a branch**.
+3. Select the `main` branch and the `/ (root)` folder, then click **Save**.
+4. Wait for GitHub Pages to finish, then open the site link shown on the Pages settings screen.
+
+For this repository, the Pages address should be `https://divyesh231.github.io/K_Explore_WebDesign/` once publishing is enabled. No custom domain is needed.
+
 ## A few notes
 
 Favorites, sample registrations and the theme preference are stored in the browser with `localStorage`. They do not sync to another device or go to a server. The registration form is a front-end demonstration only.
 
-The countdown and calendar downloads use the dates in the sample listings. Capacity bars also use made-up numbers in each event card; they are only visual examples and do not change when someone signs up. Calendar files assume an event lasts two hours. If you change an event’s date, update its date in both `index.html` and `script.js` so the card, countdown and calendar stay in sync.
+The countdown and calendar downloads use the dates in the sample listings. Starting capacity is made up, and sign-ups only adjust the spot count in the current browser; it is not shared booking data. Calendar files assume an event lasts two hours. If you change an event’s date, update its date in both `index.html` and `script.js` so the card, countdown and calendar stay in sync.
