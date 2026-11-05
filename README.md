@@ -4,6 +4,26 @@ This is a small event guide website I built for a web design project. It brings 
 
 The events are made-up examples for the project. They are not real listings, and signing up on the page does not contact an organiser.
 
+## Screenshots
+
+These show the home page and event list on desktop and Android.
+
+### Desktop
+
+![Desktop home page](screenshots/Screenshot%202026-11-05%20102856.png)
+
+![Desktop event list](screenshots/Screenshot%202026-11-05%20102923.png)
+
+### Mobile
+
+![Mobile home page](screenshots/android2.jpeg)
+
+![Mobile event list](screenshots/android3.jpeg)
+
+## Design choices
+
+I used a warm paper background with forest green, terracotta and yellow accents to match the handmade event posters. On desktop, the search, filter and sort controls sit in one row; on smaller screens they stack to make them easier to use.
+
 ## Project structure
 
 ```text
@@ -12,6 +32,16 @@ Web_Designing/
 ├── styles.css
 ├── script.js
 ├── README.md
+├── .gitignore
+├── screenshots/
+│   ├── android1.jpeg
+│   ├── android2.jpeg
+│   ├── android3.jpeg
+│   ├── android4.jpeg
+│   ├── Screenshot 2026-11-05 102856.png
+│   ├── Screenshot 2026-11-05 102914.png
+│   ├── Screenshot 2026-11-05 102923.png
+│   └── Screenshot 2026-11-05 102935.png
 └── assets/
     ├── poster-chai.svg
     ├── poster-open-mic.svg
@@ -25,8 +55,9 @@ Web_Designing/
 
 - **`index.html`** contains the page layout, event information, registration form and details dialog.
 - **`styles.css`** controls the colors, typography, poster cards, responsive layout, dark theme and small animations.
-- **`script.js`** handles the countdown, search and category filters, saved favorites, event sharing, calendar downloads, form validation and theme preference.
+- **`script.js`** handles the countdown, search, filters and sorting, sample availability, favorites, event sharing, calendar downloads, form validation and theme preference.
 - **`assets/`** contains the SVG posters used on the event cards.
+- **`screenshots/`** contains desktop and Android captures of the site.
 - **`README.md`** is this project guide.
 
 ## Features
